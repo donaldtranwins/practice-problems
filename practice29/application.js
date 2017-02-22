@@ -18,6 +18,5 @@ function do_math(num1, num2, operator){
         default:
             console.log("Please specify: (a number, a number, an operator).");
             return "Thank you.";
-            break;
     }
 }
