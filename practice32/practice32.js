@@ -4,12 +4,12 @@ function find_middle_letters(input){
     //String Methods
     if (string.length % 2 === 1) {
         var middleLetter = string.charAt((string.length - 1) / 2);
-        return middleLetter;
+        answer = middleLetter;
     } else {
         var middle1 = string.charAt(string.length / 2 - 1);
         var middle2 = string.charAt(string.length / 2);
         var middleLetters = middle1 + middle2;
-        return middleLetters;
+        answer = middleLetters;
 //             return string.charAt(string.length / 2 - 1) + string.charAt(string.length / 2);
     }
 
@@ -19,10 +19,12 @@ function find_middle_letters(input){
         var mid1 = stringArray[string.length / 2 - 1];
         var mid2 = stringArray[string.length / 2];
         var evenAnswer = mid1 + mid2;
-        return evenAnswer;
+        answer = evenAnswer;
         // return stringArray[string.length / 2 - 1] + stringArray[string.length / 2];
     } else {
         var oddAnswer = stringArray[(string.length - 1) / 2];
-        return oddAnswer;
+        answer = oddAnswer;
     }
+    var answer;
+    return answer;
 }
