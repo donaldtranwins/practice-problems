@@ -1,9 +1,9 @@
 function random_range(start_num, end_num){
     if(Array.isArray(start_num)){
-        var randomizedArray = start_num.sort(function(a, b){
+        start_num = start_num.sort(function(a, b){
             return 0.5 - Math.random();
         });
-        return randomizedArray[0];
+        return start_num[0];
     } else if(end_num === undefined) {
         return "Please supply an end number";
     } else {
