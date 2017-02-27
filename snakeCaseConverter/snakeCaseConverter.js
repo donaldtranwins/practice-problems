@@ -12,16 +12,16 @@ function snakeCaseConverter(string){
     return joinedString;
 }
 function callFunction(){
-    var string = $('#input').val();
+    var string = $('#inputField').val();
     if (string !== "" && string !== undefined) {
         var answer = snakeCaseConverter(string);
-        $('#output').text(answer);
+        $('#outputDiv').text(answer);
     }
 }
 function allowEnterKey(){
     if (event.keyCode === 13) callFunction();
 }
 $(document).ready(function(){
-   $('#call').click(callFunction);
-   $('#input').keypress(allowEnterKey);
+   $('#callFunctionButton').click(callFunction);
+   $('#inputField').keypress(allowEnterKey);
 });
