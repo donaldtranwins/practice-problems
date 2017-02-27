@@ -13,8 +13,10 @@ function snakeCaseConverter(string){
 }
 function callFunction(){
     var string = $('#input').val();
-    var answer = snakeCaseConverter(string);
-    $('#output').text(answer);
+    if (string !== "" && string !== undefined) {
+        var answer = snakeCaseConverter(string);
+        $('#output').text(answer);
+    }
 }
 function allowEnterKey(){
     if (event.keyCode === 13) callFunction();
