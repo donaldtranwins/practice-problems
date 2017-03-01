@@ -6,9 +6,13 @@
 Given a string, store a count of every letter that occurs in it.  Return an array of any letter that occurs 5 times total or 3 times in a row.
     For example: `myFunction('abcccdeabuajkeamak');`
 would return `['c', 'a']`
+
+Solution:
+ http://jsbin.com/hopeneh/edit?js,console
 */
-var answers = {};
+
 function countLetters(input) {
+    var answers = {};
     var originalInput = input.split("");
     function checkTriples(input){
         answers["Consecutive Triples"] = [];
@@ -48,8 +52,13 @@ function countLetters(input) {
                 sortedArray = sortedString.split(fiveLetters);
             } else {
                 console.log(firstLetter + " does not appear 5 times.");
+                while (sortedString.charAt(0) === sortedString.charAt(1)){
+                     sortedString = sortedString.slice(1);
+                 }
                 sortedString = sortedString.slice(1);
                 sortedArray = sortedString.split("");
+                // sortedString = sortedString.slice(1);
+                // sortedArray = sortedString.split("");
             }
             sortedString = sortedArray.join("");
         }
@@ -61,7 +70,7 @@ function countLetters(input) {
     }
     checkTriples(input);
     checkFives(input);
-    console.log(answers);
+    return answers;
 }
 
 
