@@ -3,23 +3,22 @@
  */
 
 /*
-Given a string, store a count of every letter that occurs in it.  Return an array of any letter that occurs 5 times total or 3 times in a row.
-    For example: `myFunction('abcccdeabuajkeamak');`
-would return `['c', 'a']`
+ Given a string, store a count of every letter that occurs in it.  Return an array of any letter that occurs 5 times total or 3 times in a row.
+ For example: `myFunction('abcccdeabuajkeamak');`
+ would return `['c', 'a']`
 
-Solution:
+ Solution:
  http://jsbin.com/hopeneh/edit?js,console
-*/
+ */
 
 function countLetters(input) {
     var answers = {};
-    var originalInput = input.split("");
     function checkTriples(input){
         answers["Consecutive Triples"] = [];
         console.log("=== checking for Consecutive Triples ===");
         var inputString = input;
         var inputArray = inputString.split("");
-        for (var i=0; i<inputArray.length; i++){ //checks triples
+        while (inputArray.length > 0){ //checks triples
             var firstLetter = inputArray.shift();
             var tripleLetters = firstLetter+firstLetter+firstLetter;
             if (inputString.indexOf(tripleLetters) !== -1){
@@ -43,7 +42,7 @@ function countLetters(input) {
         var inputArray = input.split("");
         var sortedArray = inputArray.sort();
         var sortedString = sortedArray.join("");
-        for (i=0; i<sortedString.length; i++) {
+        while(sortedString.length > 0) {
             var firstLetter = sortedString.charAt(0);
             var fiveLetters = firstLetter + firstLetter + firstLetter + firstLetter + firstLetter;
             if (sortedString.indexOf(fiveLetters) !== -1) {
@@ -52,11 +51,10 @@ function countLetters(input) {
                 sortedArray = sortedString.split(fiveLetters);
             } else {
                 console.log(firstLetter + " does not appear 5 times.");
-                while (sortedString.charAt(0) === sortedString.charAt(1)){
-                     sortedString = sortedString.slice(1);
-                 }
-                sortedString = sortedString.slice(1);
-                sortedArray = sortedString.split("");
+                while (firstLetter === sortedString.charAt(1)){
+                    sortedString = sortedString.slice(1);
+                }
+                sortedArray = sortedString.split(firstLetter);
                 // sortedString = sortedString.slice(1);
                 // sortedArray = sortedString.split("");
             }
@@ -77,14 +75,14 @@ function countLetters(input) {
 function doInputField() {
     var input = $('#inputField').val();
     if (input !== "" && input !== undefined) {
-        var answer = countLetters(input);
-        $('#outputDiv').text(answer);
+        var answers = countLetters(input);
+        $('#outputDiv').text(answers);
     }
 }
 function allowEnterKey() {
     if (event.keyCode === 13) doInputField();
 }
 $(document).ready(function () {
-    $('#countLetters').click(doInputField());
+    $('#callFunction').click(doInputField);
     $('#inputField').keypress(allowEnterKey);
 });
