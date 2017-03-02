@@ -139,23 +139,39 @@ test: call your function using array3_var and object2_literal_var
 
 */
 
-var objKeyvalues = [];
-for (property in object2_literal_var){
-    var temp = {
-        property: object2_literal_var[property]
-    };
-    objKeyvalues.push(temp);
+function shuffleArray(array) { // pass in your array
+    for (var i = array.length - 1; i > 0; i--) { // keep looping through your original array til its gone
+        var j = Math.floor(Math.random() * (i + 1)); // create a random index of whats left of array
+        var temp = array[i]; // keep note of the last element of your array
+        array[i] = array[j]; // replace the last element of your array with the randomed index
+        array[j] = temp; // remember the last element of your array?  swap that into your random index //WHY?
+    }
+    return array;
 }
-var keys = Object.keys(object2_literal_var);
+
+
+function durstenfeldsRandom(array){
+    for (var i=array.length-1; i>0; i--){
+        var j = Math.floor(Math.random()*i);
+        var remember = array[i];
+        array[i] = array[j];
+        array[j] = remember;
+    }
+    return array;
+}
 
 function assign_topics(names, topics){
     var assignments = [];
-    var objectKeys = Object.keys(topics);
+    var keysArray = Object.keys(topics);
+    var keyValuesArray = [];
+    for (var property in topics){
+        var temp = {};
+        temp[property] = object2_literal_var[property];
+        keyValuesArray.push(temp);
+    }
     for (var i=0;i<names.length;i++){
-        var numberOfTopics = Math.floor(Math.random() * topics.length);
-        // for (everything in topics){
-        //
-        // }
+        var numberOfTopics = Math.floor(Math.random() * topics.length)+1;
+
         assignments[i] = assignments.push(names[i])
     }
 
