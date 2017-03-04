@@ -147,6 +147,7 @@ function shuffleArray(array) { // pass in your array
         array[j] = temp; // remember the last element of your array?  swap that into your random index //WHY?
     }
     return array;
+<<<<<<< HEAD
 }
 
 
@@ -158,11 +159,14 @@ function durstenfeldsRandom(array){
         array[j] = remember;
     }
     return array;
+=======
+>>>>>>> ac5c0af2f92d831d4d0b83a4cb017f25927b5bc4
 }
 
 function assign_topics(names, topics){
     var assignments = [];
     var keysArray = Object.keys(topics);
+<<<<<<< HEAD
     var keyValuesObjectsArray = [];
     for (var property in topics){ //take objects, push into array
         var temp = {};
@@ -187,6 +191,17 @@ function assign_topics(names, topics){
         for (var j=0; j < numberOfTopics.length;j++){
             tempObject = {};
         }
+=======
+    var keyValuesArray = [];
+    for (var property in topics){
+        var temp = {};
+        temp[property] = object2_literal_var[property];
+        keyValuesArray.push(temp);
+    }
+    for (var i=0;i<names.length;i++){
+        var numberOfTopics = Math.floor(Math.random() * topics.length)+1;
+
+>>>>>>> ac5c0af2f92d831d4d0b83a4cb017f25927b5bc4
         assignments[i] = assignments.push(names[i])
     }
 
