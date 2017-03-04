@@ -43,3 +43,4 @@ function communism(sammiches, people){
 
 communism(5,[3,1,2,1]);
 communism(15,[3,1,2,5,4,2,1]);
+//true communism(3,[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]);
