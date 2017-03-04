@@ -163,15 +163,30 @@ function durstenfeldsRandom(array){
 function assign_topics(names, topics){
     var assignments = [];
     var keysArray = Object.keys(topics);
-    var keyValuesArray = [];
-    for (var property in topics){
+    var keyValuesObjectsArray = [];
+    for (var property in topics){ //take objects, push into array
         var temp = {};
         temp[property] = object2_literal_var[property];
-        keyValuesArray.push(temp);
+        keyValuesObjectsArray.push(temp);
     }
-    for (var i=0;i<names.length;i++){
-        var numberOfTopics = Math.floor(Math.random() * topics.length)+1;
+    function durstenfeldsRandom(array){
+        for (var i=array.length-1; i>0; i--){
+            var j = Math.floor(Math.random()*(i+1));
+            var remember = array[i];
+            array[i] = array[j];
+            array[j] = remember;
+        }
+        return array;
+    } //randomizes array
 
+    var people = names;
+    for (var i=0;i<names.length;i++){
+        var numberOfTopics = Math.floor(Math.random() * topics.length)+1; //generate number
+        durstenfeldsRandom(keyValuesObjectsArray); //randomizes the array order
+        tempObject.name = [people[i]];
+        for (var j=0; j < numberOfTopics.length;j++){
+            tempObject = {};
+        }
         assignments[i] = assignments.push(names[i])
     }
 
