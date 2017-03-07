@@ -139,34 +139,10 @@ test: call your function using array3_var and object2_literal_var
 
 */
 
-function shuffleArray(array) { // pass in your array
-    for (var i = array.length - 1; i > 0; i--) { // keep looping through your original array til its gone
-        var j = Math.floor(Math.random() * (i + 1)); // create a random index of whats left of array
-        var temp = array[i]; // keep note of the last element of your array
-        array[i] = array[j]; // replace the last element of your array with the randomed index
-        array[j] = temp; // remember the last element of your array?  swap that into your random index //WHY?
-    }
-    return array;
-<<<<<<< HEAD
-}
-
-
-function durstenfeldsRandom(array){
-    for (var i=array.length-1; i>0; i--){
-        var j = Math.floor(Math.random()*i);
-        var remember = array[i];
-        array[i] = array[j];
-        array[j] = remember;
-    }
-    return array;
-=======
->>>>>>> ac5c0af2f92d831d4d0b83a4cb017f25927b5bc4
-}
 
 function assign_topics(names, topics){
     var assignments = [];
     var keysArray = Object.keys(topics);
-<<<<<<< HEAD
     var keyValuesObjectsArray = [];
     for (var property in topics){ //take objects, push into array
         var temp = {};
@@ -184,24 +160,17 @@ function assign_topics(names, topics){
     } //randomizes array
 
     var people = names;
-    for (var i=0;i<names.length;i++){
-        var numberOfTopics = Math.floor(Math.random() * topics.length)+1; //generate number
+    for (var i=0;i<names.length;i++) {
+        var numberOfTopics = Math.floor(Math.random() * topics.length) + 1; //generate number
         durstenfeldsRandom(keyValuesObjectsArray); //randomizes the array order
         tempObject.name = [people[i]];
-        for (var j=0; j < numberOfTopics.length;j++){
+        for (var j = 0; j < numberOfTopics.length; j++) {
             tempObject = {};
         }
-=======
-    var keyValuesArray = [];
-    for (var property in topics){
-        var temp = {};
-        temp[property] = object2_literal_var[property];
-        keyValuesArray.push(temp);
     }
     for (var i=0;i<names.length;i++){
         var numberOfTopics = Math.floor(Math.random() * topics.length)+1;
 
->>>>>>> ac5c0af2f92d831d4d0b83a4cb017f25927b5bc4
         assignments[i] = assignments.push(names[i])
     }
 
