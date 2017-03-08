@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sort String</title>
+    <meta name="author" content="Donald J. Tran">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        function sortLettersOf(string){
+//            console.log("Input: " + string);
+//            var array = string.split("");
+//            var filteredArray = array.filter(lettersOnly); //basically a for loop
+//            var sortedArray = filteredArray.sort();
+//            var answerString = sortedArray.join("");
+//            console.log("Output: " + answerString);
+//            return answerString;
+            return string.split("").filter(lettersOnly).sort().join("");
+        }
+
+        function lettersOnly(item){ //pass in a character. if character is a letter, return it.
+            return item.charCodeAt(0) > 64 && item.charCodeAt(0) < 91 // A = 65, Z = 90
+                || item.charCodeAt(0) > 96 && item.charCodeAt(0) < 123; // a = 97, z = 122
+        }
+
+        var test = 'Hello, how are you?';
+        sortLettersOf(test);
+/////////////////////////////////
+//  jQuery stuff for the html  //
+/////////////////////////////////
+        $(document).ready(applyHandlers);
+        function applyHandlers(keypress, click){
+            $('#inputField').keypress(submitWithEnterKey);
+            $('#callFunction').click(doSortLetters);
+        }
+        function submitWithEnterKey() {
+            if (event.keyCode === 13)   doSortLetters();
+        }
+        function doSortLetters(){
+            var usersString = getInput();
+            $('#outputDiv').text(sortLettersOf(usersString));
+        }
+        function getInput(fromField) {
+            var userInput = $('#inputField').val();
+            if (userInput !== "" && userInput !== undefined)    return userInput;
+        }
+    </script>
+</head>
+<body>
+<input id="inputField" style="width: 300px" title="input"><br>
+<button id="callFunction">Sort Letters</button>
+<div id="outputLabel">Output: </div>
+<div id="outputDiv"></div>
+</body>
+</html>
