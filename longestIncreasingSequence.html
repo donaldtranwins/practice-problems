@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Longest Increasing Sequence</title>
+    <meta name="author" content="Donald J. Tran">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+//                         0 1 2 3 4 5 6 7 8 9
+//        var array = [1,2,3,2,5,7,1,7,3,4,6,8,9,10,3,4,8];
+        var testCase1 = [1,2,3,2,5,7,1,7,3,4,6,8,9,10,3,4,8];
+        var testCase2 = [3,2,1,0,4,2,1];
+        var testCase3 = [10,9,8,7,6,5,4,3,2,1];
+
+        function longestIncreasingSequence(inputArray){
+
+
+            function findIncreasingSequences() {
+                var array = inputArray.slice(0);
+                var listOfSequences = [];
+                var currentSequence = [];
+                var trash = [];
+                while (array.length) {
+                    while (!trash.length) {
+                        if (!currentSequence.length) {
+                            currentSequence.push(array.shift());
+                        }
+                        if (currentSequence[currentSequence.length - 1] < array[0]) {
+                            currentSequence.push(array.shift());
+                        } else {
+                            trash.push(array.shift());
+                        }
+                    }
+                    listOfSequences.push(currentSequence.slice(0));  //this is where I could have
+                    currentSequence = trash.slice(0);       // stored this array and its length
+                    trash = [];                         // then compared the next array to this array
+                }
+                return listOfSequences;
+            }
+
+            function getLengthsOf(array) {
+                var lengthOfSequences = [];
+                for (var i = 0; i < array.length; i++) {
+                    lengthOfSequences.push(array[i].length);
+                }
+                return lengthOfSequences;
+            }
+
+
+            function getIndexOfLargestIn(array) {
+                var biggest = array[0];
+                for (var comparison = 1; comparison < array.length; comparison++) {
+                    if (array[comparison] > biggest)
+                        biggest = array[comparison];
+                }
+                return biggest;
+            }
+
+            var listOfSequences = findIncreasingSequences(inputArray);
+            var lengths = getLengthsOf(listOfSequences);
+            var indexOfLargestLength = getIndexOfLargestIn(lengths);
+            var money = lengths.indexOf(indexOfLargestLength);
+
+            return listOfSequences[money];
+        }
+
+    </script>
+    <script>
+        // solution by Kevin Chalmers
+        function increasing_sequence(input) {
+            var output_array = [];
+            var count_1 = 1;
+            //Adjusted to 1 so I can get right count
+            var longest_count = 0;
+            // Saves longest count
+            for (var i = 0; i < input.length; i++) {
+                if (input[i] < input[i + 1]) {
+                    output_array[count_1 - 1] = input[i];
+                    //add number in array streak to output
+                    count_1++;
+                } else if (input[i] >= input[i + 1]) {
+                    if (longest_count < count_1) {
+                        output_array[count_1 - 1] = input[i];
+                        //Adjustment to add last number in array streak to output
+                        longest_count = count_1;
+                    }
+                    count_1 = 1;
+                    //Reset counter
+                }
+            }
+            return output_array;
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
