@@ -9,7 +9,8 @@
     <script>
         var laura = "Laura sobs";
 
-        function ABCheck(string){
+        function ABCheck(input){
+            var string = input.toString().toLowerCase();
             var array = string.split("");
             do {
                 var index = array.indexOf("a");
@@ -18,7 +19,7 @@
                 } else {
                     array.splice(index, 1);
                 }
-            } while (index > -1);
+            } while (index > -1 && index < array.length-4);
             return false;
         }
 
