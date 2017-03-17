@@ -17,9 +17,9 @@
                 if (array[index+4] === "b") {
                     return true;
                 } else {
-                    array.splice(index, 1);
+                    array.splice(0,index+1);
                 }
-            } while (index > -1 && index < array.length-4);
+            } while (index > -1);
             return false;
         }
 
