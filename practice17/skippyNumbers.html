@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>skippyNumbers</title>
+    <meta name="author" content="Donald J. Tran">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        //var target_value=2;
+        //var target_array=[2,3,5,6,8,9,11,12];
+
+        function skippy_numbers(input){
+            var start = input;
+            var output = [];
+            var count = 0;
+            for (var skips = 0; skips != 4; start++){
+                if (count++ === input){
+                    count = 0;
+                    skips++;
+                    continue;
+                }
+                output.push(start);
+            }
+            return output;
+        }
+
+        /////////////////////////////////
+        //  jQuery stuff for the html  //
+        /////////////////////////////////
+        $(document).ready(applyHandlers);
+        function doFunction(paramToPassIn) {
+            $('#outputDiv').text(skippy_numbers(paramToPassIn)); //change function name
+        }
+        /** NO NEED TO CHANGE ANYTHING BELOW **/
+        function applyHandlers() {
+            $('#callFunction').click(function () {
+                doFunction(getInput());
+            });
+            $('#inputField').keypress(submitWithEnterKey);
+        }
+        function submitWithEnterKey() {
+            if (event.keyCode === 13)
+                $('#callFunction').click();
+        }
+        function getInput() {
+            var userInput = $('#inputField').val();
+            if (userInput !== "" && userInput !== undefined)
+                return parseInt(userInput);
+        }
+    </script>
+</head>
+<body>
+<div style="white-space: pre-wrap">
+# skippy_numbers
+
+Given the following function call:
+- skippy_numbers(2);
+
+And the resulting output:
+- [2,3,5,6,8,9,11,12];
+
+Create a function definition that achieves the output with the given input.
+
+<a href="http://jsbin.com/vacogo/edit?html,js,output" target="_blank">Solution Set</a>
+<hr>
+<input id="inputField" style="width: 300px" title="input">
+<button id="callFunction">Skippy Input</button>
+
+<div id="outputLabel">Output:</div>
+</div>
+<div id="outputDiv" style='overflow-wrap: break-word'></div>
+</body>
+</html>
