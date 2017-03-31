@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ABCheck</title>
+    <meta name="author" content="Donald J. Tran">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        var laura = "Laura sobs";
+
+        function ABCheck(input){
+            var string = input.toString().toLowerCase();
+            var array = string.split("");
+            do {
+                var index = array.indexOf("a");
+                if (array[index+4] === "b") {
+                    return true;
+                } else {
+                    array.splice(0,index+1);
+                }
+            } while (index > -1);
+            return false;
+        }
+
+        /////////////////////////////////
+        //  jQuery stuff for the html  //
+        /////////////////////////////////
+        $(document).ready(applyHandlers);
+        function doFunction(paramToPassIn) { //change function name
+            $('#outputDiv').text(ABCheck(paramToPassIn));
+        }
+        function applyHandlers() { //no need to change
+            $('#inputField').keypress(submitWithEnterKey);
+            $('#callFunction').click(function(){
+                doFunction(getInput());
+            });
+        }
+        function submitWithEnterKey() { //no need to change
+            if (event.keyCode === 13)
+                $('#callFunction').click();
+        }
+        function getInput() { //no need to change
+            var userInput = $('#inputField').val();
+            if (userInput !== "" && userInput !== undefined)
+                return userInput;
+        }
+    </script>
+</head>
+<body style="white-space: pre-wrap">
+Make the function ABCheck(str) take the str parameter being passed and return the string true if the characters a and b are separated by exactly 3 places anywhere in the string at least once (ie. "lane borrowed" would result in true because there is exactly three characters between a and b). Otherwise return the string false.
+
+Other examples:
+Input:"after badly"
+Output:"false"
+
+Input:"Laura sobs"
+Output:"true"
+<hr>
+<input id="inputField" style="width: 300px" title="input">
+<button id="callFunction">Sort Letters</button>
+
+<div id="outputLabel">Output:</div>
+<div id="outputDiv"></div>
+</body>
+</html>
