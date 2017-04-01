@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="author" content="Donald J. Tran">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+
+
+        function selectionSort(inputArray){
+            var array = inputArray.slice(0);
+
+            function getNames(keyToFind, inputArray){
+                var valuesArray = [];
+                for (var key in object){
+                    valuesArray.push(inputArray[keyToFind])
+                }
+                return valuesArray;
+            }
+            var lastNames = getNames('lastname', array);
+            var firstNames = getNames('firstname', array);
+
+            function findSmallestName(array){
+                var smallest = {};
+                smallest.lvalue = array[0]['lastname'];
+                smallest.fvalue = array[0]['firstname'];
+                smallest.index = 0;
+                for (var i = 1; i < array.length; i++){
+                    if (smallest.value === array[i]['lastname']){
+                        if (array[smallest.index]['firstname'] > array[i]['firstname']){
+                            continue;
+                        }
+                    }
+                    if (smallest.value > array[i]['lastname']){
+                        smallest.value = array[i]['lastname'];
+                        smallest.index = i;
+                    }
+                }
+                return smallest;
+            }
+
+            for (var j = 0; j < array.length; j++){
+                var smallest = findSmallestName(array.slice(j));
+                console.log(smallest);
+                var firstValue = array[j];
+                array[j] = smallest.value;
+                array[j+smallest.index] = firstValue;
+                console.log(array);
+            }
+            return array;
+
+        }
+
+    </script>
+</head>
+<body>
+<div style="white-space: pre-wrap">
+</div>
+</body>
+</html>
