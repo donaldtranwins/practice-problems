@@ -12,12 +12,13 @@ function BankSystem (){
     function Bank (name){
         this.name = name;
         this.accounts = [null];
+        this.incrementer = 1;
         this.addAccount = (name,initialDeposit) => {
-            let bank = new Account(name,initialDeposit);
-            this.accounts.push(bank);
+            let acc = new Account(name,initialDeposit);
+            this.accounts.push(acc);
             let id = this.accounts.length-1;
             this.accounts[id].id = id;
-            console.log(`New Account #${id} with ${bank.logFunds()} at ${this.name}`);
+            console.log(`New Account #${id} with ${acc.logFunds()} at ${this.name}`);
         };
         this.removeAccount = id => {
             let empty = {};
@@ -36,34 +37,35 @@ function BankSystem (){
                     console.warn("You're trying to add a negative amount to your account.  Do you want to remove funds instead?");
                 } else {
                     this.funds += parseFloat(amount.toFixed(2));
-                    console.log(this.logFunds(amount, ' added'));
+                    console.log(this.logFunds(amount, 'added'));
                 }
                 return this.funds; //@returns total funds in the account
             };
             this.removeFunds = amount => {
                 if (this.funds >= amount){
                     this.funds -= parseFloat(amount.toFixed(2));
-                    console.log(this.logFunds(amount, ' removed'));
+                    console.log(this.logFunds(amount, 'removed'));
                     return amount; //@returns funds removed, not remaining
                 }
                 amount = this.funds || 0;
                 this.funds = 0;
-                console.log(this.logFunds(amount, ' removed'));
+                console.log(this.logFunds(amount, 'removed'));
                 return amount; //@returns funds removed, will be less than what they specified
             };
             this.transferBetweenAccounts = function(value, from, to){
                 let money = from.removeFunds(value);
                 to.addFunds(money);
             };
+            this.transferBetweenBanks = function(){
+
+            };
             this.logFunds = (amount, transaction) => {
                 if (amount && transaction){
-                    amount = ' ($'+amount;
-                    transaction += ')'
+                    var extra = ` ($${amount} ${transaction})`;
                 } else {
-                    amount = '';
-                    transaction = '';
+                    extra = '';
                 }
-                return `$${this.funds} in ${this.name}'s account${amount}${transaction}`
+                return `$${this.funds} in ${this.name}'s account${extra}`
             }
         }
     }
