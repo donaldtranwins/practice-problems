@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repeated Calls</title>
+    <meta name="author" content="Donald J. Tran">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        /** **
+         * Method 1 - Broken Down way thats easy to follow in the Inspector with debuggers
+         ** **/
+        function add (first) {
+            console.log('First number:',first);
+            let total = first ; // Global to the adder function
+            const checker = function(second){
+//                debugger;
+                if (second) {
+                    return adder(second);
+                } else {
+                    console.log('no more parameters');
+                    return total;
+                }
+            };
+            const adder = function (param) {
+                console.log('Adding:',param);
+//                debugger;
+                total += param;
+                console.log('New total:', total);
+                return checker;
+            };
+            return checker;
+        }
+        const answer = add(2)(4)(6)(1)();
+        console.log("Answer is: ",answer);
+
+        /** **
+         * Method 2 - The short and sweet version that isnt really followable
+         ** **/
+        short = total => second => {
+            console.log("Current Total is:",total);
+            if (second) return addme(total + second);
+            return total;
+        };
+        const ans = short(2)(4)(6)(1)();
+        console.log("Answer is:",ans);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
