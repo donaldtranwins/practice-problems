@@ -23,11 +23,15 @@
                 }
             };
             const adder = function (param) {
-                console.log('Adding:',param);
+                if (param) {
+                    console.log('Adding:', param);
 //                debugger;
-                total += param;
-                console.log('New total:', total);
-                return checker;
+                    total += param;
+                    console.log('New total:', total);
+                    return checker;
+                } else {
+                    console.log('???');
+                }
             };
             return checker;
         }
@@ -39,7 +43,7 @@
          ** **/
         short = total => second => {
             console.log("Current Total is:",total);
-            if (second) return addme(total + second);
+            if (second) return short(total + second);
             return total;
         };
         const ans = short(2)(4)(6)(1)();
