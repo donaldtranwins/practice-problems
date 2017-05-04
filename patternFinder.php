@@ -10,18 +10,24 @@ $test2 = "sskfssbbb9bbb";
 
 function patternFinder ($input){
     $found = [];
-    for ($start = 0; $start < strlen($input); $start++){
-        echo "[$input] starting from: $input[$start]<br>";
-        for ($len = 0; $len < strlen($input); $len++){
+    $patternFound = false;
+    for ($start = 0; $start < strlen($input)-1; $start++){
+        echo "<br>[$input] starting from: $input[$start]";
+        for ($len = 0; $len < strlen($input)-$start; $len++){
             $substring = substr($input,$start,$len);
             if (empty($substring))
                 continue;
-//        echo "<br>$substring";
+            echo "<br>$substring";
             if (substr_count($input, $substring) > 1){
                 if (empty($found[$substring])){
-                    echo "<br>$substring repeats";
+                    echo " repeats";
                     $found[$substring] = strlen($substring);
+                    $patternFound = true;
                 }
+            } else if ($patternFound){
+                echo ' does not repeat, breaking';
+                $patternFound = false;
+                break;
             }
         }
 
